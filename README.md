@@ -75,13 +75,14 @@
       border-radius: 30px;
       text-decoration: none;
       transition: 0.3s;
+      cursor: pointer;
     }
 
     .btn:hover {
       background-color: #ff4757;
     }
 
-    /* Ảnh hai bên trang */
+    /* 🌸 Ảnh hai bên trang */
     .side-img {
       position: fixed;
       top: 50%;
@@ -89,9 +90,15 @@
       transform: translateY(-50%);
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      opacity: 0.9;
-      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+      transition: opacity 1.5s ease, transform 0.5s ease;
       z-index: 5;
+      pointer-events: none;
+    }
+
+    .side-img.show {
+      opacity: 0.9;
+      pointer-events: auto;
     }
 
     .side-img:hover {
@@ -132,9 +139,9 @@
 </head>
 <body>
 
-  <!-- 🌸 Ảnh trang trí hai bên -->
-  <img src="me1.jpg" alt="Mẹ bên trái" class="side-img left-img">
-  <img src="me2.jpg" alt="Mẹ bên phải" class="side-img right-img">
+  <!-- 🌸 Ảnh trang trí hai bên (ẩn mặc định) -->
+  <img src="me1.jpg" alt="Mẹ bên trái" class="side-img left-img" id="leftImg">
+  <img src="me2.jpg" alt="Mẹ bên phải" class="side-img right-img" id="rightImg">
 
   <!-- 🌸 Header -->
   <header>
@@ -147,14 +154,14 @@
     <img src="https://cdn.pixabay.com/photo/2016/11/21/15/54/woman-1848949_1280.jpg" alt="Mẹ yêu">
     <p>Mẹ ơi, nhân ngày 20/10, con muốn gửi đến mẹ lời chúc chân thành nhất!  
     Cảm ơn mẹ vì những năm tháng hi sinh, vì tình yêu thương bao la mẹ dành cho con.
-    Con biết hiện tại con chưa làm được gì nhiều chỉ có thể tạo trang wed này để gửi lời cảm ơn me.</p>
+    Con biết hiện tại con chưa làm được gì nhiều chỉ có thể tạo trang web này để gửi lời cảm ơn mẹ.</p>
 
     <p>Con mong mẹ luôn mạnh khỏe, luôn cười thật tươi, và mãi hạnh phúc bên gia đình nhỏ của mình.  
     Con yêu mẹ rất nhiều! ❤️</p>
 
     <div class="signature">— Con của mẹ, Vỹ —</div>
 
-    <a class="btn" href="#">💌 Gửi mẹ</a>
+    <a class="btn" id="revealBtn">💌 Gửi mẹ</a>
   </div>
 
   <!-- 🌸 Footer -->
@@ -162,7 +169,7 @@
     <p>© 2025 - Trang web nhỏ dành tặng mẹ Thắm nhân ngày Phụ nữ Việt Nam 20/10 🌸</p>
   </footer>
 
-  <!-- 🌸 Hiệu ứng hoa rơi bằng JavaScript -->
+  <!-- 🌸 Hiệu ứng hoa rơi -->
   <script>
     const flowers = ["🌸", "🌷", "💮", "🌺", "🌻", "🌼"];
     function createFlower() {
@@ -174,12 +181,28 @@
       flower.style.fontSize = 18 + Math.random() * 20 + "px";
       document.body.appendChild(flower);
 
-      setTimeout(() => {
-        flower.remove();
-      }, 9000);
+      setTimeout(() => flower.remove(), 9000);
     }
-
     setInterval(createFlower, 300);
+
+    // 🌷 Khi bấm nút "Gửi mẹ" -> hiển thị hai ảnh hai bên
+    const revealBtn = document.getElementById("revealBtn");
+    const leftImg = document.getElementById("leftImg");
+    const rightImg = document.getElementById("rightImg");
+
+    revealBtn.addEventListener("click", () => {
+      leftImg.classList.add("show");
+      rightImg.classList.add("show");
+
+      // Cuộn nhẹ xuống phần ảnh
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+
+      // Đổi nội dung nút sau khi bấm
+      revealBtn.innerText = "🌷 Cảm ơn mẹ 🌷";
+      revealBtn.style.backgroundColor = "#ff85a2";
+      revealBtn.style.cursor = "default";
+      revealBtn.disabled = true;
+    });
   </script>
 
 </body>
