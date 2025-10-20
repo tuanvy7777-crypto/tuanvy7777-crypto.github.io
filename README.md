@@ -185,8 +185,6 @@
   </script>
 
 </body>
-![me1](https://github.com/user-attachments/assets/29988c37-44cb-43ce-b3b5-848b4a3c61b5)
-![me2](https://github.com/user-attachments/assets/f1760e23-8033-4483-90b4-a5e17a5f41cb)
 </html>
 
 
