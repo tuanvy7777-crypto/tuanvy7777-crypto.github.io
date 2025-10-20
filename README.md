@@ -23,16 +23,16 @@
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2em;
       color: #d6336c;
       margin: 10px 0;
     }
 
     .content {
-      max-width: 700px;
-      margin: 40px auto;
+      max-width: 90%;
+      margin: 30px auto;
       background-color: rgba(255, 255, 255, 0.85);
-      padding: 30px;
+      padding: 25px;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       position: relative;
@@ -40,60 +40,61 @@
     }
 
     .content p {
-      font-size: 1.2em;
-      line-height: 1.8;
-      margin: 20px 0;
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin: 15px 0;
     }
 
     .signature {
-      margin-top: 30px;
+      margin-top: 20px;
       font-style: italic;
       color: #444;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 30px;
       padding: 10px;
       background-color: rgba(255,255,255,0.3);
       color: #555;
       z-index: 10;
       position: relative;
+      font-size: 0.9em;
     }
 
     img {
-      width: 200px;
+      width: 150px;
       border-radius: 50%;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 15px;
       background-color: #ff6b81;
       color: white;
-      padding: 10px 20px;
+      padding: 10px 25px;
       border-radius: 30px;
       text-decoration: none;
       transition: 0.3s;
       cursor: pointer;
+      font-size: 1em;
     }
 
     .btn:hover {
       background-color: #ff4757;
     }
 
-    /* 🌸 Lớp phủ hai hình giữa màn hình */
+    /* 🌸 Ảnh overlay chính giữa */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 240, 245, 0.95);
+      background-color: rgba(255, 240, 245, 0.96);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 40px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 1s ease;
@@ -103,7 +104,7 @@
     .overlay.show {
       opacity: 1;
       pointer-events: auto;
-      animation: zoomIn 2s ease forwards;
+      animation: fadeInBg 1.2s ease forwards;
     }
 
     .overlay img {
@@ -113,24 +114,26 @@
       opacity: 0;
       transform: scale(0.5);
       transition: all 1.5s ease;
+      max-width: 80%;
+      height: auto;
     }
 
     .overlay.show img {
-      width: 300px;
+      width: 280px;
       opacity: 1;
       transform: scale(1);
     }
 
-    @keyframes zoomIn {
+    @keyframes fadeInBg {
       0% { background-color: rgba(255, 240, 245, 0); }
-      100% { background-color: rgba(255, 240, 245, 0.95); }
+      100% { background-color: rgba(255, 240, 245, 0.96); }
     }
 
     /* 🌸 Hoa rơi */
     .flower {
       position: fixed;
       top: -10px;
-      font-size: 20px;
+      font-size: 18px;
       opacity: 0.8;
       animation: fall linear forwards;
       z-index: 1;
@@ -146,10 +149,9 @@
 </head>
 <body>
 
-  <!-- 🌸 Lớp phủ ảnh giữa màn hình -->
+  <!-- 🌸 Ảnh overlay chính giữa -->
   <div class="overlay" id="overlay">
-    <img src="me1.jpg" alt="Mẹ bên trái">
-    <img src="me2.jpg" alt="Mẹ bên phải">
+    <img src="me1.jpg" alt="Mẹ yêu nhất đời">
   </div>
 
   <!-- 🌸 Header -->
@@ -193,7 +195,7 @@
     }
     setInterval(createFlower, 300);
 
-    // Khi ấn nút -> hiện overlay hai hình giữa màn hình
+    // Khi ấn nút -> hiện overlay ảnh giữa màn hình
     const btn = document.getElementById("revealBtn");
     const overlay = document.getElementById("overlay");
 
