@@ -82,39 +82,51 @@
       background-color: #ff4757;
     }
 
-    /* 🌸 Ảnh hai bên trang */
-    .side-img {
+    /* 🌸 Lớp phủ hai hình giữa màn hình */
+    .overlay {
       position: fixed;
-      top: 50%;
-      width: 180px;
-      transform: translateY(-50%);
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 240, 245, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
       opacity: 0;
-      transition: opacity 1.5s ease, transform 0.5s ease;
-      z-index: 5;
       pointer-events: none;
+      transition: opacity 1s ease;
+      z-index: 100;
     }
 
-    .side-img.show {
-      opacity: 0.9;
-      pointer-events: auto;
-    }
-
-    .side-img:hover {
-      transform: translateY(-50%) scale(1.05);
+    .overlay.show {
       opacity: 1;
+      pointer-events: auto;
+      animation: zoomIn 2s ease forwards;
     }
 
-    .left-img {
-      left: 20px;
+    .overlay img {
+      width: 0;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 1.5s ease;
     }
 
-    .right-img {
-      right: 20px;
+    .overlay.show img {
+      width: 300px;
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* 🌸 Hiệu ứng hoa rơi */
+    @keyframes zoomIn {
+      0% { background-color: rgba(255, 240, 245, 0); }
+      100% { background-color: rgba(255, 240, 245, 0.95); }
+    }
+
+    /* 🌸 Hoa rơi */
     .flower {
       position: fixed;
       top: -10px;
@@ -126,22 +138,19 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
+
   </style>
 </head>
 <body>
 
-  <!-- 🌸 Ảnh trang trí hai bên (ẩn mặc định) -->
-  <img src="me1.jpg" alt="Mẹ bên trái" class="side-img left-img" id="leftImg">
-  <img src="me2.jpg" alt="Mẹ bên phải" class="side-img right-img" id="rightImg">
+  <!-- 🌸 Lớp phủ ảnh giữa màn hình -->
+  <div class="overlay" id="overlay">
+    <img src="me1.jpg" alt="Mẹ bên trái">
+    <img src="me2.jpg" alt="Mẹ bên phải">
+  </div>
 
   <!-- 🌸 Header -->
   <header>
@@ -180,28 +189,20 @@
       flower.style.animationDuration = 4 + Math.random() * 5 + "s";
       flower.style.fontSize = 18 + Math.random() * 20 + "px";
       document.body.appendChild(flower);
-
       setTimeout(() => flower.remove(), 9000);
     }
     setInterval(createFlower, 300);
 
-    // 🌷 Khi bấm nút "Gửi mẹ" -> hiển thị hai ảnh hai bên
-    const revealBtn = document.getElementById("revealBtn");
-    const leftImg = document.getElementById("leftImg");
-    const rightImg = document.getElementById("rightImg");
+    // Khi ấn nút -> hiện overlay hai hình giữa màn hình
+    const btn = document.getElementById("revealBtn");
+    const overlay = document.getElementById("overlay");
 
-    revealBtn.addEventListener("click", () => {
-      leftImg.classList.add("show");
-      rightImg.classList.add("show");
-
-      // Cuộn nhẹ xuống phần ảnh
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-
-      // Đổi nội dung nút sau khi bấm
-      revealBtn.innerText = "🌷 Cảm ơn mẹ 🌷";
-      revealBtn.style.backgroundColor = "#ff85a2";
-      revealBtn.style.cursor = "default";
-      revealBtn.disabled = true;
+    btn.addEventListener("click", () => {
+      overlay.classList.add("show");
+      btn.innerText = "🌷 Cảm ơn mẹ 🌷";
+      btn.style.backgroundColor = "#ff85a2";
+      btn.style.cursor = "default";
+      btn.disabled = true;
     });
   </script>
 
