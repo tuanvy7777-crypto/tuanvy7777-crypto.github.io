@@ -81,33 +81,7 @@
       background-color: #ff4757;
     }
 
-    /* Ảnh hai bên trang */
-    .side-img {
-      position: fixed;
-      top: 50%;
-      width: 180px;
-      transform: translateY(-50%);
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      opacity: 0.9;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      z-index: 5;
-    }
-
-    .side-img:hover {
-      transform: translateY(-50%) scale(1.05);
-      opacity: 1;
-    }
-
-    .left-img {
-      left: 20px;
-    }
-
-    .right-img {
-      right: 20px;
-    }
-
-    /* 🌸 Hiệu ứng hoa rơi */
+       /* 🌸 Hiệu ứng hoa rơi */
     .flower {
       position: fixed;
       top: -10px;
@@ -131,12 +105,7 @@
   </style>
 </head>
 <body>
-
-  <!-- 🌸 Ảnh trang trí hai bên -->
-  <img src="me1.jpg" alt="Mẹ bên trái" class="side-img left-img">
-  <img src="me2.jpg" alt="Mẹ bên phải" class="side-img right-img">
-
-  <!-- 🌸 Header -->
+<!-- 🌸 Header -->
   <header>
     <h1>💐 Chúc mừng ngày mẹ Thắm 💐</h1>
     <h2>Gửi đến Mẹ người đẹp nhất trong lòng con</h2>
